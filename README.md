@@ -1,7 +1,7 @@
 # 🧠 Implementation of a K-BioRec
 
-> **A Case Study of the President’s Office – Public Service Recruitment Secretariat (Tanzania)**  
-> *Researchers: Dr. Stephen Wambura · Mselem Mussa*
+> **A Case Study of (Tanzania)**  
+> *Researchers: Dr. Stephen Wambura · *
 
 ---
 
