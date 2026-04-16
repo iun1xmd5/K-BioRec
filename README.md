@@ -1,32 +1,42 @@
-# 🧠 Implementation of a K-BioRec
+# HKB-BV: Hybrid Knowledge-Based Biometric Verification Framework
 
-> **A Case Study of (Tanzania)**  
-> *Researchers: Dr. Stephen Wambura · *
+A low-cost, deployable biometric verification system for East African public-sector recruitment using IoT edge sensing, deep learning, SWRL ontology reasoning, and Dempster–Shafer evidence fusion.
 
----
+## Features
+- **ESP32 Edge Device**: Low-cost ($15 USD) fingerprint acquisition with real-time liveness detection - **Fuzzy Liveness Detection**: Complementary pore density and ridge quality fusion (α=0.4, SRR 98.5%)
+- **SWRL Ontology Reasoning**: Contextual fraud inference (velocity anomalies, geospatial conflicts)
+- **Dempster–Shafer Fusion**: Uncertainty-aware evidence combination (AUC 0.968, EER 1.27%)
+- **National-Scale Scalability**: FAISS indexing supports 10M identities at 28ms latency
+- **Explainable Decisions**: SHAP audit traces for regulatory compliance (PDPA, DPA, DPPA)
 
-## 📘 Overview
+## Performance
 
-This repository supports the ongoing research paper:  
-**“Implementation of a Secure K-BioRec.”**
+| Metric | Value | Dataset |
+|--------|-------|---------|
+| AUC | 0.968 ± 0.002 | Synthetic PSRS |
+| EER | 1.27% ± 0.06 | Mean (3 datasets) |
+| SRR | 98% ± 1.0 | Spoof rejection |
+| Latency | 1.91s | End-to-end (1.72s stable, 2.10s intermittent) |
+| Throughput | 35 verifications/min | Stable 4G |
+| Scalability | 28ms @ 10M identities | FAISS indexing |
 
-The project is ongoing 
+## Quick Start
 
-The goal is to develop a **secure, scalable, knowledge‑based verification model** 
----
+### Prerequisites
+- Python 3.8+
+- Arduino IDE 1.8.13+ (ESP32 board support)
+- Docker & Docker Compose (optional)
 
-## 🧩 Core Contributions
+### Installation
 
-✅ **Secure K-BioRec Framework** — 
-✅ **Knowledge‑Based Decision Logic** — 
-✅ **End‑to‑End Security Stack** — 
-✅ **Statistical Evaluation** — 
-✅ **Open Research Assets** — Includes code prototypes, example datasets (synthetic) and real-world scenarios, analysis scripts, and reproducibility guidelines.
+```bash
+# Clone repository
+git clone https://github.com/yourusername/kbiodet.git
+cd kbiodet
 
----
+# Install backend dependencies
+pip install -r requirements.txt
 
-## 🧱 System Architecture
-> On-going
+# Install edge firmware dependencies (Arduino IDE)
+# Install board: esp32:esp32:esp32wroom32
 
- 
- 
