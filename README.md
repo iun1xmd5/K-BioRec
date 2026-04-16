@@ -3,7 +3,7 @@
 A low-cost, deployable biometric verification system for East African public-sector recruitment using IoT edge sensing, deep learning, SWRL ontology reasoning, and Dempster–Shafer evidence fusion.
 
 ## Features
-- **ESP32 Edge Device**: Low-cost ($15 USD) fingerprint acquisition with real-time liveness detection - **Fuzzy Liveness Detection**: Complementary pore density and ridge quality fusion (α=0.4, SRR 98.5%)
+- **ESP32 Edge Device**: Low-cost fingerprint acquisition with real-time liveness detection - **Fuzzy Liveness Detection**: Complementary pore density and ridge quality fusion (α=0.4, SRR 98.5%)
 - **SWRL Ontology Reasoning**: Contextual fraud inference (velocity anomalies, geospatial conflicts)
 - **Dempster–Shafer Fusion**: Uncertainty-aware evidence combination (AUC 0.968, EER 1.27%)
 - **National-Scale Scalability**: FAISS indexing supports 10M identities at 28ms latency
