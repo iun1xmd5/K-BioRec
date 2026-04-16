@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Apr 16 22:09:29 2026
+
+@author: dr
+"""
+
 """
 Synthetic PSRS Dataset Generator Generates realistic EA public-sector recruitment biometric data
 using conditional GAN framework with automatic dataset handling
