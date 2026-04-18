@@ -7,8 +7,7 @@ Created on Thu Apr 16 22:09:29 2026
 """
 
 """
-Synthetic PSRS Dataset Generator Generates realistic EA public-sector recruitment biometric data
-using conditional GAN framework with automatic dataset handling
+Synthetic PSRS Dataset Generator Generates realistic EA public-sector recruitment biometric data using conditional GAN framework with automatic dataset handling
 """
 
 import numpy as np
@@ -40,7 +39,7 @@ logging.basicConfig(
 # ============================================================
 
 FVC2006_URL = "http://bias.csr.unibo.it/fvc2006/download.asp"
-# Note: FVC2006 requires manual download due to licensing
+# FVC2006 requires manual download due to licensing
 # Alternative: Use synthetic fingerprint generation without base dataset
 
 class ConditionalGAN(nn.Module):

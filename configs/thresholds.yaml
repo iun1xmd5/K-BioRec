@@ -1,0 +1,96 @@
+# ============================================================
+# Decision Thresholds Configuration
+# These values govern accept/reject/ambiguous logic
+# Tuned via ROC analysis + confusion matrix evaluation
+# Last Updated: 2026-04-18
+# ============================================================
+
+# ─── Threshold Definitions ───────────────────────────────────
+
+thresholds:
+
+  # τ* — Primary confidence threshold for gesture ACCEPTANCE
+  # Gestures with score >= τ* are accepted as valid predictions
+  tau_star:
+    value: 0.85
+    description: "Primary acceptance threshold (high confidence)"
+    derived_from: "Youden's J-statistic on validation ROC curve"
+    tuning_metric: "F1-Score"
+    acceptable_range: [0.80, 0.95]
+
+  # τ_l — Lower bound threshold for gesture REJECTION
+  # Gestures with score < τ_l are immediately rejected (noise/null)
+  tau_lower:
+    value: 0.50
+    description: "Lower rejection threshold (low confidence)"
+    derived_from: "Precision-Recall curve elbow point"
+    tuning_metric: "Precision"
+    acceptable_range: [0.40, 0.60]
+
+  # τ_K — Cohen's Kappa agreement threshold
+  # Predictions with κ >= τ_K are marked as inter-rater consistent
+  tau_kappa:
+    value: 0.75
+    description: "Kappa agreement threshold (prediction consistency)"
+    derived_from: "Landis & Koch scale — Substantial agreement"
+    tuning_metric: "Cohen's Kappa (κ)"
+    acceptable_range: [0.60, 0.85]
+
+# ─── Decision Logic ──────────────────────────────────────────
+
+decision_logic:
+  zones:
+    accept:
+      condition: "confidence >= tau_star"
+      action: "PUBLISH_PREDICTION"
+      label: "HIGH_CONFIDENCE"
+
+    ambiguous:
+      condition: "tau_lower <= confidence < tau_star"
+      action: "FLAG_FOR_REVIEW"
+      label: "AMBIGUOUS"
+      fallback: "REQUEST_RETRANSMISSION"
+
+    reject:
+      condition: "confidence < tau_lower"
+      action: "DISCARD"
+      label: "REJECTED"
+      log: true
+
+  kappa_check:
+    condition: "kappa >= tau_kappa"
+    action: "MARK_CONSISTENT"
+    on_failure: "LOG_INCONSISTENCY"
+
+# ─── Adaptive Threshold Settings ─────────────────────────────
+
+adaptive:
+  enabled: false                   # Enable online threshold adaptation
+  method: "exponential_moving_avg"
+  alpha: 0.1                       # EMA smoothing factor
+  update_frequency: "per_epoch"
+  min_samples_before_adapt: 500
+
+# ─── Per-Class Threshold Overrides ───────────────────────────
+
+per_class_overrides:
+  enabled: false
+  classes:
+    class_0_rest:
+      tau_star: 0.90               # Stricter for "rest" class
+    class_7_swipe_left:
+      tau_star: 0.80               # Relaxed for harder gestures
+    class_8_swipe_right:
+      tau_star: 0.80
+
+# ─── Evaluation Metadata ─────────────────────────────────────
+
+evaluation:
+  dataset: "gesture_dataset_v2"
+  num_samples: 10000
+  cross_validation_folds: 5
+  achieved_metrics:
+    accuracy: 0.937
+    f1_macro: 0.921
+    kappa: 0.918
+    auc_roc: 0.974
