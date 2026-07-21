@@ -33,7 +33,7 @@ A comprehensive, low-cost, deployable biometric verification system for East Afr
 ### Core Components
 
 - **🎯 ESP32 IoT Edge Device**
-  - Low-cost ($15 USD) fingerprint acquisition
+  - Low-cost fingerprint acquisition
   - Real-time minutiae extraction (512-dimensional vectors)
   - Fuzzy liveness detection (α=0.4, SRR 98.5%)
   - MQTT/TLS secure communication
