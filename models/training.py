@@ -30,10 +30,6 @@ from .resnet_matcher import (
 
 logger = logging.getLogger(__name__)
 
-# ============================================================
-# Configuration
-# ============================================================
-
 class TrainingConfig:
     """Training configuration"""
     
@@ -568,9 +564,6 @@ class FingerPrintTrainer:
         
         logger.info(f"Training history saved to {output_path}")
 
-# ============================================================
-# Convenience Functions
-# ============================================================
 
 def train_matcher(train_images: np.ndarray,
                  train_labels: np.ndarray,
