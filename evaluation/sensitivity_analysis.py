@@ -11,11 +11,6 @@ perturbations. Quantifies performance degradation curves across:
     5. Missing data (NaN injection + imputation)
 
 Produces degradation curves and robustness summary metrics.
-
-Usage:
-    python -m evaluation.sensitivity_analysis \
-        --config configs/hyperparameters.yaml \
-        --output results/sensitivity/
 """
 
 from __future__ import annotations
@@ -36,9 +31,6 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(name)s — %(message)s",
 )
 logger = logging.getLogger("sensitivity_analysis")
-
-
-# ─── Perturbation Functions ─────────────────────────────────
 
 class Perturbations:
     """Library of input perturbation strategies."""
@@ -116,7 +108,7 @@ class Perturbations:
         return X_pert.astype(np.float32)
 
 
-# ─── Result Data Structures ─────────────────────────────────
+# Result Data Structures 
 
 @dataclass
 class PerturbationPoint:
@@ -183,7 +175,7 @@ class SensitivityReport:
         ]
 
 
-# ─── Sensitivity Analyzer ───────────────────────────────────
+# Sensitivity Analyzer 
 
 class SensitivityAnalyzer:
     """
@@ -355,8 +347,8 @@ class SensitivityAnalyzer:
 
         ranking = report.to_dict()["ranking"]
         for entry in ranking:
-            vuln = "🔴 HIGH" if entry["robustness_auc"] < 0.3 else (
-                "🟡 MEDIUM" if entry["robustness_auc"] < 0.6 else "🟢 LOW"
+            vuln = "HIGH" if entry["robustness_auc"] < 0.3 else (
+                "MEDIUM" if entry["robustness_auc"] < 0.6 else " LOW"
             )
             print(
                 f"  {entry['perturbation']:<28} "
@@ -366,7 +358,7 @@ class SensitivityAnalyzer:
         print("=" * 72 + "\n")
 
 
-# ─── CLI ─────────────────────────────────────────────────────
+# 
 
 def main() -> None:
     parser = argparse.ArgumentParser(
