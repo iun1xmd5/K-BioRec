@@ -100,7 +100,7 @@ A comprehensive, low-cost, deployable biometric verification system for East Afr
 | **HKB-BV (Ours)** | **0.968** | **1.27%** | **98%** | **1.91s** |
 | VeriFinger (Commercial) | 0.961 | 2.80% | 93% | 1,550ms |
 | DeepPrint (DL-only) | 0.954 | 2.73% | 85% | 8.5ms |
-| Manual PSRS | 0.780 | 21.5% | 40% | 30,000ms |
+| Manual PSRS | -- | -- | -- | 30,000ms |
 | Ontology KBS (standalone) | 0.815 | 18.6% | 65% | 10ms |
 
 **Statistical Significance:** Wilcoxon signed-rank test, $p < 10^{-45}$
