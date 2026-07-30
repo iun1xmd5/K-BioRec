@@ -303,10 +303,6 @@ class ScalabilityBenchmark:
         print(f"📄 JSON saved → {path}")
 
 
-# ---------------------------------------------------------------------------
-# Built-in demo workloads
-# ---------------------------------------------------------------------------
-
 def _demo_cpu_workload(n: int = 10_000) -> float:
     """CPU-bound: sum of squares."""
     return sum(i * i for i in range(n))
@@ -322,10 +318,6 @@ def _demo_mixed_workload(n: int = 5_000, delay: float = 0.002) -> float:
     time.sleep(delay)
     return result
 
-
-# ---------------------------------------------------------------------------
-# CLI entry point
-# ---------------------------------------------------------------------------
 
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -405,13 +397,13 @@ def main() -> None:
         output_json=args.json,
     )
 
-    print(f"\n🚀 Starting Scalability Benchmark  [{datetime.now():%Y-%m-%d %H:%M:%S}]")
+    print(f"\n Starting Scalability Benchmark  [{datetime.now():%Y-%m-%d %H:%M:%S}]")
     print(f"   Workload    : {args.workload}")
     print(f"   Concurrency : {config.concurrency_levels}")
     print(f"   Iterations  : {config.iterations_per_level} per level")
     print(f"   Executor    : {'ProcessPool' if not config.use_threads else 'ThreadPool'}")
     if not PSUTIL_AVAILABLE:
-        print("   ⚠️  psutil not installed – CPU metrics disabled")
+        print("psutil not installed – CPU metrics disabled")
     print()
 
     benchmark = ScalabilityBenchmark(config)
